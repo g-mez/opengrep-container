@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# fetch-opengrep-artifacts.sh
+# fetch-artifacts.sh
 # Fetch latest OpenGrep binary and rules repo for air-gapped Docker build.
 
 set -euo pipefail
