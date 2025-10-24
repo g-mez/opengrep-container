@@ -17,10 +17,10 @@ artifacts/
 ### 1. Fetch Opengrep Artifacts
 
 Run the script to download the latest Opengrep binary and clone the rules repository:
-
 ```bash
 ./fetch_artifacts.sh
 ```
+![fetch](https://github.com/user-attachments/assets/30122c90-d99d-4af0-9c33-c9c2caca0709)
 
 This will:
 
@@ -37,6 +37,7 @@ docker build -t Opengrep-airgap:latest \
 ```
 
 Replace `<version>` with the version printed by the fetch script.
+![build](https://github.com/user-attachments/assets/337bdabf-e2db-4291-8dc1-cab59bf52400)
 
 ### 3. Run a Scan
 
@@ -54,6 +55,7 @@ docker run --rm -v $(pwd):/workspace opengrep-airgap:latest scan /workspace -f /
 ```bash
 docker run --rm -v $(pwd):/workspace opengrep-airgap:latest scan /workspace/example-code -f /rules/python --config auto
 ```
+![scan](https://github.com/user-attachments/assets/691fe56b-28c1-4ef3-9ac8-eee3313ea1b8)
 
 This will apply only the Python-specific rules to your code.
 
