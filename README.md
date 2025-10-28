@@ -51,16 +51,25 @@ Replace `<version>` with the version printed by the fetch script.
 To scan your project directory using the built image:
 
 ```bash
-docker run --rm -v $(pwd):/workspace opengrep-container:latest scan /workspace -f /rules --config auto
+docker run --rm -v $(pwd):/workspace opengrep-container:latest \
+scan /workspace -f /rules --config auto
 ```
 
 - `/workspace` maps your local project directory into the container  
 - `/rules` points to the rules directory inside the container  
 
-For example, to scan only Python code in the `example-code` folder:
+Example: scan using python rule set on  `example-code` folder:
 
 ```bash
-docker run --rm -v $(pwd):/workspace opengrep-container:latest scan /workspace/example-code -f /rules/python --config auto
+docker run --rm -v $(pwd):/workspace opengrep-container:latest \
+scan /workspace/example-code -f /rules/python --config auto
+```
+
+Example: scan using python rule set on  `example-code` folder with json output report:
+
+```bash
+docker run --rm -v $(pwd):/workspace opengrep-container:latest \
+scan /workspace/example-code -f /rules/python --config auto --json > python-scan-results.json
 ```
 
 ## Links & Resources  
