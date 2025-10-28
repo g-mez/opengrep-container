@@ -88,7 +88,7 @@ Artifacts prepared:
 
 Docker build command to run (from project root):
 
-  docker build -t opengrep-airgap:latest \
+  docker build -t opengrep-container:latest \
     --build-arg OPENGREP_VERSION=${VERSION} .
 
 EOF
