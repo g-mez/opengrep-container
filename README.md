@@ -11,11 +11,15 @@ This repository provides a simple workflow for fetching the Opengrep binary (see
 
 ## Folder Structure
 ```
-artifacts/
-├── Opengrep/
-│   └── <version>/        # Downloaded by the fetch artifacts script (Opengrep binary)
-│       └── opengrep
-└── rules/                # Cloned by the fetch artifacts script (Opengrep rule set)
+├── Dockerfile                
+├── fetch_artifacts.sh        # Script to download the OpenGrep binary and rule set
+├── scripts/import_scan.sh    # Defect Dojo scan import helper script
+├── artifacts/                # Directory created by fetch_artifacts.sh
+│   ├── Opengrep/
+│   │   └── <version>/        
+│   │       └── opengrep      # Downloaded OpenGrep binary
+│   └── rules/                # Cloned OpenGrep rule set repository
+└── example-code/             # Example code for test scanning
 ```
 
 
@@ -71,6 +75,26 @@ Example: scan using python rule set on  `example-code` folder with json output r
 docker run --rm -v $(pwd):/workspace opengrep-container:latest \
 scan /workspace/example-code -f /rules/python --config auto --json > python-scan-results.json
 ```
+
+![scan](https://github.com/user-attachments/assets/4838f87e-88e1-45dc-b870-9b98d8320c17)
+
+## Defect Dojo Import Scans
+To import Opengrep scans into Defect Dojo you can utilized the `scripts/import_scan.sh` script. 
+
+1. Export Defect Dojo API token:
+```bash
+export DEFECT_DOJO_API_TOKEN="<defect-dojo-api-token>"
+```
+
+1. Run the import_scan.sh script
+```bash
+./scripts/import_scan.sh --host https://<defect-dojo-hostname> --product-name "<product-name>" \
+--engagement-name "<engagment-name>" --report <path-to-scan-results>.json
+```
+This will
+- Upload Opengrep grep json formatted scan results into Defect Dojo.
+- Assumes that the product name exists in Defect Dojo.
+- Loads results into exsiting engagment or creates the engagment if it is not found.
 
 ## Links & Resources  
 - [Opengrep project on GitHub](https://github.com/opengrep/opengrep)  
